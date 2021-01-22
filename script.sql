@@ -1,0 +1,27 @@
+DROP TABLE LIBRO;
+DROP TABLE ESTANTERIA;
+
+CREATE TABLE ESTANTERIA (
+    ID SMALLINT NOT NULL PRIMARY KEY,
+    NOMBRE VARCHAR(20)
+);
+
+INSERT INTO ESTANTERIA VALUES
+    (1, 'Fondo'), 
+    (2, 'Detrás-Escritorio'),
+    (3, 'Escalera');
+
+CREATE TABLE LIBRO (
+    ID SMALLINT NOT NULL PRIMARY KEY,
+    NOMBRE VARCHAR(50) NOT NULL,
+    AUTOR VARCHAR(50) NOT NULL,
+    UBICACION SMALLINT NOT NULL,
+    FOREIGN KEY(UBICACION) REFERENCES ESTANTERIA
+);
+
+INSERT INTO LIBRO VALUES
+    (1, 'Libro 1.1', 'Autor 1', 1),
+    (2, 'Libro 1.2', 'Autor 1', 1),
+    (3, 'Libro 1.3', 'Autor 1', 1),
+    (4, 'Libro 2.1', 'Autor 2', 2),
+    (5, 'Libro 2.2', 'Autor 2', 2);
