@@ -1,8 +1,10 @@
 package persistencia;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Libro;
 
 /**
@@ -21,6 +23,20 @@ public class LibroFacade extends AbstractFacade<Libro> implements LibroFacadeLoc
 
     public LibroFacade() {
         super(Libro.class);
+    }
+
+    @Override
+    public List<Libro> findByNombre(String nombre) {
+        Query consulta = em.createNamedQuery("Libro.findByNombre");
+        consulta.setParameter("nombre", nombre);
+        return consulta.getResultList();
+    }
+
+    @Override
+    public List<Libro> findByAutor(String autor) {
+        Query consulta = em.createNamedQuery("Libro.findByAutor");
+        consulta.setParameter("autor", autor);
+        return consulta.getResultList();
     }
     
 }
