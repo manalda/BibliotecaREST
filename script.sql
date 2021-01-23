@@ -12,16 +12,17 @@ INSERT INTO ESTANTERIA VALUES
     (3, 'Escalera');
 
 CREATE TABLE LIBRO (
-    ID SMALLINT NOT NULL PRIMARY KEY,
+    ID INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     NOMBRE VARCHAR(50) NOT NULL,
     AUTOR VARCHAR(50) NOT NULL,
     UBICACION SMALLINT NOT NULL,
+    PRIMARY KEY(ID),
     FOREIGN KEY(UBICACION) REFERENCES ESTANTERIA
 );
 
-INSERT INTO LIBRO VALUES
-    (1, 'Libro 1.1', 'Autor 1', 1),
-    (2, 'Libro 1.2', 'Autor 1', 1),
-    (3, 'Libro 1.3', 'Autor 1', 1),
-    (4, 'Libro 2.1', 'Autor 2', 2),
-    (5, 'Libro 2.2', 'Autor 2', 2);
+INSERT INTO LIBRO(NOMBRE, AUTOR, UBICACION) VALUES
+    ('Libro 1.1', 'Autor 1', 1),
+    ('Libro 1.2', 'Autor 1', 1),
+    ('Libro 1.3', 'Autor 1', 1),
+    ('Libro 2.1', 'Autor 2', 2),
+    ('Libro 2.2', 'Autor 2', 2);

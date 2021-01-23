@@ -28,5 +28,4 @@ public interface LibroFacadeLocal {
     List<Libro> findByNombre(String nombre);
     
     List<Libro> findByAutor(String autor);
-    
 }
