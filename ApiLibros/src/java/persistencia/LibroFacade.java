@@ -28,14 +28,14 @@ public class LibroFacade extends AbstractFacade<Libro> implements LibroFacadeLoc
     @Override
     public List<Libro> findByNombre(String nombre) {
         Query consulta = em.createNamedQuery("Libro.findByNombre");
-        consulta.setParameter("nombre", nombre);
+        consulta.setParameter("nombre", "%" + nombre + "%");
         return consulta.getResultList();
     }
 
     @Override
     public List<Libro> findByAutor(String autor) {
         Query consulta = em.createNamedQuery("Libro.findByAutor");
-        consulta.setParameter("autor", autor);
+        consulta.setParameter("autor", "%" + autor + "%");
         return consulta.getResultList();
     }
     
