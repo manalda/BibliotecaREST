@@ -52,14 +52,17 @@ public class LibrosResource implements ContainerResponseFilter{
 
     @GET
     @Produces("application/json")
-    public Response getLibros(@QueryParam("nombre") String nombre, @QueryParam("autor") String autor) {
+    public Response getLibros(@QueryParam("nombre") String nombre, @QueryParam("autor") String autor, @QueryParam("lugar") Integer lugar) {
         ResponseBuilder respuesta = Response.status(Response.Status.OK);
-        
+
         List<Libro> libros;
         if(nombre != null) {
             libros = libroFacade.findByNombre(nombre);
         } else if(autor != null) {
             libros = libroFacade.findByAutor(autor);
+        } else if(lugar != null) {
+            Estanteria e = estanteriaFacade.find(lugar);
+            libros = libroFacade.findByUbicacion(e);
         } else {
             libros = libroFacade.findAll();
         }
@@ -94,7 +97,7 @@ public class LibrosResource implements ContainerResponseFilter{
         ResponseBuilder respuesta = Response.status(Response.Status.CREATED);
         try {
             Libro l = new Libro();
-            short ubicacion = (short)nuevo.getJsonObject("ubicacion").getInt("id");
+            int ubicacion = nuevo.getJsonObject("ubicacion").getInt("id");
             Estanteria e = estanteriaFacade.find(ubicacion);
             l.setNombre(nuevo.getString("nombre"));
             l.setAutor(nuevo.getString("autor"));
@@ -114,7 +117,7 @@ public class LibrosResource implements ContainerResponseFilter{
         ResponseBuilder respuesta = Response.status(Response.Status.OK);
         try {
             Libro l = libroFacade.find(id);
-            short ubicacion = (short)nuevo.getJsonObject("ubicacion").getInt("id");
+            int ubicacion = nuevo.getJsonObject("ubicacion").getInt("id");
             Estanteria e = estanteriaFacade.find(ubicacion);
             l.setNombre(nuevo.getString("nombre"));
             l.setAutor(nuevo.getString("autor"));

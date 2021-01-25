@@ -28,7 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Libro.findAll", query = "SELECT l FROM Libro l"),
     @NamedQuery(name = "Libro.findById", query = "SELECT l FROM Libro l WHERE l.id = :id"),
     @NamedQuery(name = "Libro.findByNombre", query = "SELECT l FROM Libro l WHERE l.nombre LIKE :nombre"),
-    @NamedQuery(name = "Libro.findByAutor", query = "SELECT l FROM Libro l WHERE l.autor LIKE :autor")})
+    @NamedQuery(name = "Libro.findByAutor", query = "SELECT l FROM Libro l WHERE l.autor LIKE :autor"),
+    @NamedQuery(name = "Libro.findByUbicacion", query = "SELECT l FROM Libro l WHERE l.ubicacion = :ubicacion")})
 public class Libro implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

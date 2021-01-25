@@ -2,6 +2,7 @@ package persistencia;
 
 import java.util.List;
 import javax.ejb.Local;
+import modelo.Estanteria;
 import modelo.Libro;
 
 /**
@@ -28,4 +29,6 @@ public interface LibroFacadeLocal {
     List<Libro> findByNombre(String nombre);
     
     List<Libro> findByAutor(String autor);
+    
+    List<Libro> findByUbicacion(Estanteria ubicacion);
 }
